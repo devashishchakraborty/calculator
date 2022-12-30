@@ -4,8 +4,9 @@ body{
 
 .container{
     display: flex;
-    min-width: 400px;
+    min-width: 360px;
     max-width: 600px;
+    height: 80vh;
     margin: auto;
     flex-direction: column;
     background-color: #464362;
@@ -14,19 +15,20 @@ body{
     padding: 16px;
     border: 4px solid #c1bdd2;
     box-sizing: border-box;
+    justify-content: stretch;
 }
 
 .display-area{
     display: flex;
     background-color: #eae6ff;
-    height: 160px;
-    border-radius: 8px;
+    border-radius: 16px;
     border: 2px solid #282828;
     justify-content: flex-end;
     align-items: flex-end;
-    padding: 16px;
+    padding: 8px 16px;
     box-sizing: border-box;
     font-size: 48px;
+    flex: 1;
 }
 
 
@@ -34,14 +36,13 @@ body{
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 8px;
-    grid-template-areas: "clear clear clear clear";
+    flex: 4;
 }
 
 button{
     background-color: #aca9bb;
     font-size: 32px;
-    padding: 24px;
-    border-radius: 8px;
+    border-radius: 16px;
     border: 2px solid #282828;
 }
 
@@ -51,6 +52,7 @@ button:active{
 
 #clear{
     background-color: #da8371;
-    grid-column-start: 1;
-    grid-column-end: -1;
+    /* grid-column-start: 1;
+    grid-column-end: -1; */
+    grid-column: 1 / -1;
 }
