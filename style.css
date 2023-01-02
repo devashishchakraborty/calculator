@@ -21,7 +21,7 @@ body{
 .display-area{
     display: flex;
     background-color: #eae6ff;
-    border-radius: 16px;
+    border-radius: 8px;
     border: 2px solid #282828;
     justify-content: flex-end;
     align-items: flex-end;
@@ -29,6 +29,9 @@ body{
     box-sizing: border-box;
     font-size: 48px;
     flex: 1;
+    word-wrap: break-word;
+    word-break: break-all;
+    text-align: right;
 }
 
 
@@ -42,7 +45,7 @@ body{
 button{
     background-color: #aca9bb;
     font-size: 32px;
-    border-radius: 16px;
+    border-radius: 8px;
     border: 2px solid #282828;
 }
 
