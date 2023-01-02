@@ -30,22 +30,28 @@ function operate(operator, num1, num2){
     }
 }
 
-const displayDiv = document.querySelector('.display-area');
-const numbers = document.querySelectorAll('.number');
+const displayArea = document.querySelector('.display-area');
+const numberButtons = document.querySelectorAll('.number');
 const clearButton = document.querySelector('#clear');
+const operatorButtons = document.querySelectorAll('.operator')
 
 let displayValue = "";
+let operator = "";
 
-numbers.forEach(function(number){
+numberButtons.forEach(function(number){
     number.addEventListener('click', function(event){
         if (displayValue.length < 16){
-            displayValue = `${displayValue}` + `${number.textContent}`;
-            displayDiv.textContent = displayValue;
+            displayValue = `${displayValue}` + `${number.getAttribute("number")}`;
+            displayArea.textContent = displayValue;
         }
     })
 });
 
 clearButton.addEventListener('click', function(){
     displayValue = "";
-    displayDiv.textContent = "0";
+    displayArea.textContent = "0";
+});
+
+operatorButtons.forEach(function(operation){
+
 });
