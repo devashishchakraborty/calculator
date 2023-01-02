@@ -29,3 +29,23 @@ function operate(operator, num1, num2){
         break;
     }
 }
+
+const displayDiv = document.querySelector('.display-area');
+const numbers = document.querySelectorAll('.number');
+const clearButton = document.querySelector('#clear');
+
+let displayValue = "";
+
+numbers.forEach(function(number){
+    number.addEventListener('click', function(event){
+        if (displayValue.length < 16){
+            displayValue = `${displayValue}` + `${number.textContent}`;
+            displayDiv.textContent = displayValue;
+        }
+    })
+});
+
+clearButton.addEventListener('click', function(){
+    displayValue = "";
+    displayDiv.textContent = "0";
+});
