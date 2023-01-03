@@ -50,7 +50,7 @@ buttons.forEach(function (button) {
 
         if (event.target.getAttribute("button-type") === "operator") {
             if (+displayValue.slice(-1)) {
-                if (event.target.getAttribute("value") === "=") {
+                if (event.target.getAttribute("value") === "=" && operation.length !== 0) {
                     secondNumber = displayValue.split(operation).filter(Boolean).slice(-1);
                     displayValue = Math.round(operate(operation, parseFloat(firstNumber), parseFloat(secondNumber)) * 100) / 100;
                 } else {
