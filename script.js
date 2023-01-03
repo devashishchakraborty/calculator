@@ -11,6 +11,9 @@ function multiply(num1, num2) {
 }
 
 function divide(num1, num2) {
+    if (num2 == 0) {
+        return "bruh";
+    }
     return num1 / num2;
 }
 
@@ -30,49 +33,49 @@ function operate(operator, num1, num2) {
     }
 }
 
-const displayArea = document.querySelector('.display-area');
-const numberButtons = document.querySelectorAll('.number');
-const clearButton = document.querySelector('#clear');
-const operatorButtons = document.querySelectorAll('.operator')
+const operationArea = document.querySelector('#operation');
+const solutionArea = document.querySelector("#solution");
+const buttons = document.querySelectorAll('button')
 
 let firstNumber = "";
 let secondNumber = "";
+let displayValue = "";
 let operator = "";
-let displayText = "";
 
-numberButtons.forEach(function (number) {
-    number.addEventListener('click', function () {
-        const currentNumber = number.getAttribute("number");
-
-        if (firstNumber.length < 16 && operator.length === 0
-            && !(firstNumber.includes(".") && currentNumber === ".")) {
-            firstNumber = `${firstNumber}` + `${currentNumber}`;
-            displayText = `${displayText}` + `${currentNumber}`;
+buttons.forEach(function (button) {
+    button.addEventListener('click', function (event) {
+        if (!displayValue.includes("=") && secondNumber.length > 0 && button.getAttribute('id') === 'equals') {
+            solutionArea.textContent = operate(operator[0], parseFloat(firstNumber), parseFloat(secondNumber));
         }
-
-        if (secondNumber.length < 16 && operator.length === 1
-            && !(secondNumber.includes(".") && currentNumber === ".")) {
-            secondNumber = `${secondNumber}` + `${currentNumber}`;
-            displayText = `${displayText}` + `${currentNumber}`;
+        if (displayValue.includes("=")) {
+            displayValue = firstNumber
         }
-        displayArea.textContent = displayText;
+        displayValue += button.textContent;
+        operationArea.textContent = displayValue;
+        if (button.getAttribute('class') === 'number') {
+            const digit = button.getAttribute('number');
+            if (operator.length === 0) {
+                firstNumber += digit;
+            } else if (operator.length === 1) {
+                secondNumber += digit;
+            }
+        }
+        if (button.getAttribute('class') === 'operator') {
+            operator += button.getAttribute('operator');
+            if (operator.length === 2) {
+                firstNumber = operate(operator[0], parseFloat(firstNumber), parseFloat(secondNumber));
+                operator = operator.slice(1);
+                solutionArea.textContent = firstNumber;
+                secondNumber = "";
+            }
+        }
+        if (button.getAttribute('class') === 'clear') {
+            operationArea.textContent = "";
+            solutionArea.textContent = "0";
+            displayValue = "";
+            firstNumber = "";
+            secondNumber = "";
+            operator = "";
+        }
     })
-});
-
-clearButton.addEventListener('click', function () {
-    displayText = "";
-    displayArea.textContent = "0";
-    operator = "";
-    firstNumber = "";
-    secondNumber = "";
-});
-
-operatorButtons.forEach(function (operation) {
-    operation.addEventListener('click', function () {
-        if (operator.length === 0) {
-            operator = operation.getAttribute("operator");
-            displayText = `${displayText}` + `${operation.textContent}`;
-            displayArea.textContent = displayText;
-        }
-    });
 });
