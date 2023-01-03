@@ -10,29 +10,30 @@
   </head>
   <body>
     <div class="container">
-      <div class="display-area">0</div>
+      <div class="display-area">
+        <div class="operation"></div>
+        <div class="solution">0</div>
+      </div>
       <div class="grid-numbers">
-        <button id="clear">CLEAR</button>
+        <button class="btn" button-type="clear">CLEAR</button>
 
-        <button class="number" number="7">7</button>
-        <button class="number" number="8">8</button>
-        <button class="number" number="9">9</button>
-        <button class="operator" operator="+">+</button>
+        <button class="btn" button-type="number" value="7">7</button>
+        <button class="btn" button-type="number" value="8">8</button>
+        <button class="btn" button-type="number" value="9">9</button>
+        <button class="btn" button-type="operator" value="+">+</button>
         
-        <button class="number" number="4">4</button>
-        <button class="number" number="5">5</button>
-        <button class="number" number="6">6</button>
-        <button class="operator" operator="-">-</button>
+        <button class="btn" button-type="number" value="4">4</button>
+        <button class="btn" button-type="number" value="5">5</button>
+        <button class="btn" button-type="number" value="6">6</button>
+        <button class="btn" button-type="operator" value="-">-</button>
         
-        <button class="number" number="1">1</button>
-        <button class="number" number="2">2</button>
-        <button class="number" number="3">3</button>
-        <button class="operator" operator="*">×</button>
-        
-        <button class="number" number=".">.</button>
-        <button class="number" number="0">0</button>
-        <button id="equals">=</button>
-        <button class="operator" operator="/">÷</button>
+        <button class="btn" button-type="number" value="1">1</button>
+        <button class="btn" button-type="number" value="2">2</button>
+        <button class="btn" button-type="number" value="3">3</button>
+        <button class="btn" button-type="operator" value="×">×</button>
+        <button class="btn" button-type="number" value="0">0</button>
+        <button class="btn" button-type="operator" value="=">=</button>
+        <button class="btn" button-type="operator" value="÷">÷</button>
       </div>
     </div>
   </body>
