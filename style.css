@@ -1,5 +1,5 @@
 body {
-  background-color: #15141e;
+  background-color: #232232;
 }
 
 .container {
@@ -19,18 +19,32 @@ body {
 }
 
 .display-area {
+  display: flex;
+  flex-direction: column;
   background-color: #eae6ff;
-  border-radius: 8px;
   border: 2px solid #282828;
-  justify-content: space-between;
-  align-items: flex-end;
-  padding: 8px 16px;
+  align-items: stretch;
   box-sizing: border-box;
   flex: 1;
   word-wrap: break-word;
   word-break: break-all;
-  text-align: right;
-  font-size: 48px;
+}
+
+.display-up{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    flex: 2;
+    font-size: 36px;
+    background-color: #d3cfe6;
+}
+
+.display-down{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    flex: 3;
+    font-size: 48px;
 }
 
 .grid-numbers {
@@ -52,8 +66,12 @@ body {
 }
 
 .btn[button-type="clear"] {
-  background-color: #da8371;
+  background-color: #ff7a00;
   /* grid-column-start: 1;
     grid-column-end: -1; */
   grid-column: 1 / -1;
+}
+
+.btn[button-type="operator"]{
+    background-color: #ff9bb4;
 }
