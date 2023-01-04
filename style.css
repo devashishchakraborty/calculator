@@ -1,5 +1,4 @@
 body {
-  margin: 32px 0;
   background-color: #312f46;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
@@ -9,7 +8,7 @@ body {
   min-width: 360px;
   max-width: 600px;
   height: 80vh;
-  margin: auto;
+  margin: 32px auto;
   flex-direction: column;
   background-color: #4e4b6e;
   gap: 16px;
