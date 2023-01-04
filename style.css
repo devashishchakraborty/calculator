@@ -30,21 +30,21 @@ body {
   word-break: break-all;
 }
 
-.display-up{
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    flex: 2;
-    font-size: 36px;
-    background-color: #d3cfe6;
+.display-up {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  flex: 2;
+  font-size: 36px;
+  background-color: #dcd8f0;
 }
 
-.display-down{
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    flex: 3;
-    font-size: 48px;
+.display-down {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  flex: 3;
+  font-size: 48px;
 }
 
 .grid-numbers {
@@ -66,12 +66,17 @@ body {
 }
 
 .btn[button-type="clear"] {
-  background-color: #ff7a00;
+  background-color: #ff5500;
   /* grid-column-start: 1;
     grid-column-end: -1; */
-  grid-column: 1 / -1;
+  grid-column: 1 / 3;
+}
+.btn[button-type="backspace"] {
+  background-color: #ff8000;
+  grid-column: 3 / 5;
 }
 
-.btn[button-type="operator"]{
-    background-color: #ff9bb4;
+.btn[button-type="operator"],
+.btn[button-type="equalTo"] {
+  background-color: #ff9bb4;
 }
