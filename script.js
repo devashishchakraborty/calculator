@@ -33,7 +33,8 @@ function operate(operator, num1, num2) {
     }
 }
 
-const operationArea = document.querySelector('.display-area');
+const displayArea1 = document.querySelector(".display-up")
+const displayArea2 = document.querySelector('.display-down');
 const buttons = document.querySelectorAll('.btn')
 
 let firstNumber = "";
@@ -48,32 +49,28 @@ buttons.forEach(function (button) {
             displayValue += event.target.getAttribute('value');
         }
 
-        if (event.target.getAttribute("button-type") === "operator") {
-            if (+displayValue.slice(-1)) {
-                if (event.target.getAttribute("value") === "=" && operation.length !== 0) {
-                    secondNumber = displayValue.split(operation).filter(Boolean).slice(-1);
-                    displayValue = Math.round(operate(operation, parseFloat(firstNumber), parseFloat(secondNumber)) * 100) / 100;
+        if (event.target.getAttribute("button-type") === "operator"){
+            if (displayValue.length > 0){
+                if (operation.length === 0){
+                    firstNumber = displayValue;
+                    displayValue = "";
                 } else {
-                    if (operation.length === 1) {
-                        secondNumber = displayValue.split(operation).filter(Boolean).slice(-1);
-                        displayValue = Math.round(operate(operation, parseFloat(firstNumber), parseFloat(secondNumber)) * 100) / 100;
-                        firstNumber = displayValue;
-                        displayValue += event.target.getAttribute("value");
-                    } else {
-                        firstNumber = displayValue;
-                        displayValue += event.target.getAttribute("value");
-                    }
-                    operation = event.target.getAttribute("value");
+                    secondNumber = displayValue;
+                    displayValue = "";
+                    firstNumber = Math.round(operate(operation, parseFloat(firstNumber), parseFloat(secondNumber)) * 100) / 100;
                 }
             }
-        }
+            operation = event.target.getAttribute("value");
+            displayArea1.textContent = firstNumber + operation;
+        }    
 
         if (event.target.getAttribute("button-type") === "clear") {
             displayValue = "";
             firstNumber = "";
             secondNumber = "";
             operation = "";
+            displayArea1.textContent = "";
         }
-        operationArea.textContent = displayValue;
+        displayArea2.textContent = displayValue;
     })
 });
