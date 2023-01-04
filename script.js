@@ -11,6 +11,9 @@ function multiply(num1, num2) {
 }
 
 function divide(num1, num2) {
+    if (num2 == 0) {
+        return "bruh";
+    }
     return num1 / num2;
 }
 
@@ -30,20 +33,14 @@ function operate(operator, num1, num2) {
     }
 }
 
-function appendNumber(event){
-    if (displayValue.length < 16){
-        if (event.type === "keydown"){
-            displayValue += event.key
-        } else {
-            displayValue += event.target.getAttribute('value');
-        }
-    }
+function appendNumber(event) {
+    displayValue += event.target.getAttribute('value');
     displayArea2.textContent = displayValue;
 }
 
-function appendOperators(event){
-    if (displayValue.length > 0){
-        if (operation.length === 0){
+function appendOperator(event){
+    if (displayValue.length > 0) {
+        if (operation.length === 0) {
             firstNumber = displayValue;
             displayValue = "";
         } else {
@@ -53,7 +50,7 @@ function appendOperators(event){
         }
     }
     operation = event.target.getAttribute("value");
-    if (displayArea1.textContent.length === 0 && firstNumber.length === 0){
+    if (displayArea1.textContent.length === 0 && firstNumber.length === 0) {
         operation = "";
     }
     displayArea1.textContent = firstNumber + operation;
@@ -61,20 +58,29 @@ function appendOperators(event){
 }
 
 function appendDecimal(event){
-    if (!displayValue.includes(".")){
+    if (!displayValue.includes(".")) {
         displayValue += event.target.getAttribute("value");
         displayArea2.textContent = displayValue;
     }
 }
 
-function appendEqualTo(){
+function equalToPressed(){
     equalTo = true;
-    if (firstNumber.length > 0 && displayValue.length > 0){
+    if (firstNumber.length === 0) {
+        displayArea2.textContent = "=" + displayValue;
+    } else if (displayValue.length === 0) {
+        displayArea2.textContent = "=" + firstNumber;
+    } else {
         secondNumber = displayValue;
         firstNumber = Math.round(operate(operation, parseFloat(firstNumber), parseFloat(secondNumber)) * 100) / 100;
         displayArea1.textContent = "";
+        displayArea2.textContent = "=" + firstNumber;
     }
-    displayArea2.textContent = "=" + firstNumber;
+}
+
+function backspacePressed(){
+    displayValue = displayValue.slice(0, -1);
+    displayArea2.textContent = displayValue;
 }
 
 function clearScreen(){
@@ -87,60 +93,30 @@ function clearScreen(){
     equalTo = false;
 }
 
-function clearEntry(){
-    displayValue = displayValue.slice(0, -1);
-    displayArea2.textContent = displayValue;
-}
-
-// objects for html elements
 const displayArea1 = document.querySelector(".display-up")
 const displayArea2 = document.querySelector('.display-down');
 const buttons = document.querySelectorAll('.btn')
 
-// some variables to store data
 let firstNumber = "";
 let secondNumber = "";
 let displayValue = "";
 let operation = "";
 let equalTo = false;
 
-// Actions for Calculator Buttons Pressed
 buttons.forEach(function (button) {
     button.addEventListener('click', function (event) {
 
-        if (!equalTo){
-            if (event.target.getAttribute("button-type") === "number") {
-                appendNumber(event);
-            }
-    
-            if (event.target.getAttribute("button-type") === "operator"){
-                appendOperators(event);
-            }
+        if (!equalTo) {
+            if (event.target.getAttribute("button-type") === "number") appendNumber(event);
 
-            if (event.target.getAttribute("button-type") === "decimal"){
-                appendDecimal(event);
-            }
-    
-            if (event.target.getAttribute("button-type") === "equalTo"){
-                appendEqualTo();
-            }
+            if (event.target.getAttribute("button-type") === "operator") appendOperator(event);
 
-            if (event.target.getAttribute("button-type") === "backspace"){
-                clearEntry();
-            }
+            if (event.target.getAttribute("button-type") === "decimal") appendDecimal(event);
+
+            if (event.target.getAttribute("button-type") === "equalTo") equalToPressed();
+
+            if (event.target.getAttribute("button-type") === "backspace") backspacePressed();
         }
-        
-        if (event.target.getAttribute("button-type") === "clear") {
-            clearScreen();
-        }
+        if (event.target.getAttribute("button-type") === "clear") clearScreen();
     })
 });
-
-// Actions for Keyboard Buttons Pressed
-
-document.addEventListener('keydown', function(event){
-    if(+event.key){
-        appendNumber(event);
-    }
-    // if (event.key)
-})

@@ -28,6 +28,11 @@ body {
   flex: 1;
   word-wrap: break-word;
   word-break: break-all;
+  text-align: right;
+}
+
+.display-down, .display-up{
+  padding: 0 8px;
 }
 
 .display-up {
@@ -74,6 +79,13 @@ body {
 .btn[button-type="backspace"] {
   background-color: #ff8000;
   grid-column: 3 / 5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+img{
+  height: 1em;
 }
 
 .btn[button-type="operator"],
