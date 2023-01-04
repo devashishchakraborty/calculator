@@ -11,9 +11,6 @@ function multiply(num1, num2) {
 }
 
 function divide(num1, num2) {
-    if (num2 == 0) {
-        return "bruh";
-    }
     return num1 / num2;
 }
 
@@ -34,7 +31,13 @@ function operate(operator, num1, num2) {
 }
 
 function appendNumber(event){
-    displayValue += event.target.getAttribute('value');
+    if (displayValue.length < 16){
+        if (event.type === "keydown"){
+            displayValue += event.key
+        } else {
+            displayValue += event.target.getAttribute('value');
+        }
+    }
     displayArea2.textContent = displayValue;
 }
 
@@ -89,16 +92,19 @@ function clearEntry(){
     displayArea2.textContent = displayValue;
 }
 
+// objects for html elements
 const displayArea1 = document.querySelector(".display-up")
 const displayArea2 = document.querySelector('.display-down');
 const buttons = document.querySelectorAll('.btn')
 
+// some variables to store data
 let firstNumber = "";
 let secondNumber = "";
 let displayValue = "";
 let operation = "";
 let equalTo = false;
 
+// Actions for Calculator Buttons Pressed
 buttons.forEach(function (button) {
     button.addEventListener('click', function (event) {
 
@@ -129,3 +135,12 @@ buttons.forEach(function (button) {
         }
     })
 });
+
+// Actions for Keyboard Buttons Pressed
+
+document.addEventListener('keydown', function(event){
+    if(+event.key){
+        appendNumber(event);
+    }
+    // if (event.key)
+})
