@@ -5,7 +5,7 @@
 - **Live Preview** -> [Here](https://devashishchakraborty.github.io/calculator)
 
 ## Screenshot
-<img src="https://user-images.githubusercontent.com/49796291/210605124-a6975a29-2706-4336-9504-1f519ca93bf1.png" width=20% height=20%>
+<img src="https://user-images.githubusercontent.com/49796291/210605124-a6975a29-2706-4336-9504-1f519ca93bf1.png" width=50% height=50%>
 
 ## Future Additions
 - Support for negative Numbers.
