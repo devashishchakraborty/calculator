@@ -34,12 +34,18 @@ function operate(operator, num1, num2) {
 }
 
 function appendNumber(event) {
-    displayValue += event.target.getAttribute('value');
-    displayArea2.textContent = displayValue;
+    if (displayValue.length < 16) {
+
+        if (event.type === "keydown") displayValue += event.key;
+        else displayValue += event.target.getAttribute('value');
+
+        displayArea2.textContent = displayValue;
+    }
+
 }
 
-function appendOperator(event){
-    if (displayValue.length > 0) {
+function appendOperator(event) {
+    if (displayValue.length > 0) { // wont insert operator if no number is present in displayArea2
         if (operation.length === 0) {
             firstNumber = displayValue;
             displayValue = "";
@@ -49,23 +55,37 @@ function appendOperator(event){
             firstNumber = Math.round(operate(operation, parseFloat(firstNumber), parseFloat(secondNumber)) * 100) / 100;
         }
     }
-    operation = event.target.getAttribute("value");
+
+    if (event.type === "keydown") {
+        // pressing keyboard * and / keys will display the normal multiplicaltion and division symbols.
+        if (event.key === "*") operation = "×"
+        else if (event.key === "/") operation = "÷"
+        else operation = event.key;
+    }
+    else operation = event.target.getAttribute("value");
+
+    // Won't insert operator in displayArea1 if no number is present
     if (displayArea1.textContent.length === 0 && firstNumber.length === 0) {
         operation = "";
     }
+
     displayArea1.textContent = firstNumber + operation;
     displayArea2.textContent = displayValue;
 }
 
-function appendDecimal(event){
-    if (!displayValue.includes(".")) {
-        displayValue += event.target.getAttribute("value");
+function appendDecimal(event) {
+    if (!displayValue.includes(".")) { // doesn't allow multiple decimal points in a single number
+
+        if (event.type === "keydown") displayValue += event.key;
+        else displayValue += event.target.getAttribute("value");
+
         displayArea2.textContent = displayValue;
     }
 }
 
-function equalToPressed(){
+function equalToPressed() {
     equalTo = true;
+    // No calculation occurs if only one number is present.
     if (firstNumber.length === 0) {
         displayArea2.textContent = "=" + displayValue;
     } else if (displayValue.length === 0) {
@@ -78,12 +98,12 @@ function equalToPressed(){
     }
 }
 
-function backspacePressed(){
+function backspacePressed() {
     displayValue = displayValue.slice(0, -1);
     displayArea2.textContent = displayValue;
 }
 
-function clearScreen(){
+function clearScreen() {
     displayValue = "";
     firstNumber = "";
     secondNumber = "";
@@ -103,10 +123,12 @@ let displayValue = "";
 let operation = "";
 let equalTo = false;
 
+// Base calculator
 buttons.forEach(function (button) {
     button.addEventListener('click', function (event) {
+        
+        if (!equalTo) { // Will Only run the condition if equal to button is not pressed
 
-        if (!equalTo) {
             if (event.target.getAttribute("button-type") === "number") appendNumber(event);
 
             if (event.target.getAttribute("button-type") === "operator") appendOperator(event);
@@ -117,6 +139,15 @@ buttons.forEach(function (button) {
 
             if (event.target.getAttribute("button-type") === "backspace") backspacePressed();
         }
-        if (event.target.getAttribute("button-type") === "clear") clearScreen();
+        if (event.target.getAttribute("button-type") === "clear") clearScreen(); // clears everything and reset
     })
 });
+
+// Keyboard support for calculator
+document.addEventListener("keydown", function (event) {
+    if (["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"].includes(event.key)) appendNumber(event);
+    if (["+", "-", "*", "/"].includes(event.key)) appendOperator(event);
+    if (event.key === ".") appendDecimal(event);
+    if (event.key === "=") equalToPressed();
+    if (event.key === "Backspace") backspacePressed();
+})
