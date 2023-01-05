@@ -166,4 +166,5 @@ document.addEventListener("keydown", function (event) {
     if (event.key === ".") appendDecimal(event);
     if (event.key === "=") equalToPressed();
     if (event.key === "Backspace") backspacePressed();
+    if (event.key === " ") clearScreen();
 })
