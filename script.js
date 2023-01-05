@@ -120,6 +120,13 @@ function clearScreen() {
     equalTo = false;
 }
 
+function toggleNegative(){
+    if (displayValue.length > 0){
+        displayValue = (+displayValue * -1).toString(); 
+        displayArea2.textContent = displayValue;
+    }
+}
+
 const displayArea1 = document.querySelector(".display-up")
 const displayArea2 = document.querySelector('.display-down');
 const buttons = document.querySelectorAll('.btn')
@@ -145,6 +152,8 @@ buttons.forEach(function (button) {
             if (event.target.getAttribute("button-type") === "equalTo") equalToPressed();
 
             if (event.target.getAttribute("button-type") === "backspace") backspacePressed();
+
+            if (event.target.getAttribute("button-type") === "negative-toggle") toggleNegative();
         }
         if (event.target.getAttribute("button-type") === "clear") clearScreen(); // clears everything and reset
     })
