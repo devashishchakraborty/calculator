@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="style.css" />
+    <link rel="icon" type="image/x-icon" href="images/calculator-icon-dark.svg">
     <script src="script.js" defer></script>
     <title>Calculator</title>
   </head>
@@ -15,8 +16,10 @@
         <div class="display-down"></div>
       </div>
       <div class="grid-numbers">
-        <button class="btn" button-type="clear">CLEAR</button>
-        <button class="btn" button-type="backspace"><img src="images/backspace.svg" alt="Backspace key" srcset=""></button>
+        <button class="btn" button-type="clear">AC</button>
+        <button class="btn" button-type="backspace"><img src="images/backspace.svg" alt="Backspace key"></button>
+        <button class="btn" button-type="negative-toggle" value="+/-">+/-</button>
+        <button class="btn" button-type="operator" value="^"><img src="images/exponent.svg" alt="exponent"></button>
 
         <button class="btn" button-type="number" value="7">7</button>
         <button class="btn" button-type="number" value="8">8</button>
@@ -39,6 +42,6 @@
         <button class="btn" button-type="operator" value="÷">÷</button>
       </div>
     </div>
-    <div class="credits">Made By: Devashish &nbsp;<a href="https://github.com/devashishchakraborty/calculator"><img src="images/github.svg" alt="github logo"></a></div>
+    <div class="credits">Made By Devashish &nbsp;<a href="https://github.com/devashishchakraborty/calculator"><img src="images/github.svg" alt="github logo"></a></div>
   </body>
 </html>
