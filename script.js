@@ -41,7 +41,7 @@ function operate(operator, num1, num2) {
 }
 
 function appendNumber(event) {
-    if (displayValue.length < 16) {
+    if (displayValue.length < 32) {
         if (event.type === "keydown"){
             if (displayValue[0] === "0" && displayValue.length === 1 && event.key === "0"){
                 displayValue += "";
