@@ -42,9 +42,18 @@ function operate(operator, num1, num2) {
 
 function appendNumber(event) {
     if (displayValue.length < 16) {
-
-        if (event.type === "keydown") displayValue += event.key;
-        else displayValue += event.target.getAttribute('value');
+        if (event.type === "keydown"){
+            if (displayValue[0] === "0" && displayValue.length === 1 && event.key === "0"){
+                displayValue += "";
+            }
+            else displayValue += event.key;
+        }
+        else {
+            if (displayValue[0] === "0" && displayValue.length === 1 && event.target.getAttribute('value') === "0"){
+                displayValue += "";
+            }
+            else displayValue += event.target.getAttribute('value');
+        }
 
         displayArea2.textContent = displayValue;
     }
