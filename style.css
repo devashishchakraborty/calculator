@@ -7,7 +7,7 @@ body {
   display: flex;
   min-width: 360px;
   max-width: 600px;
-  height: 80vh;
+  height: max(550px, 80vh);
   margin: 32px auto;
   flex-direction: column;
   background-color: #4e4b6e;
