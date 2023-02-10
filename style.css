@@ -66,10 +66,10 @@ body {
   border-radius: 8px;
   border: 2px solid #282828;
 }
-
+/*
 .btn:active {
   transform: translateX(2px) translateY(4px);
-}
+} */
 
 .btn[button-type="clear"] {
   background-color: #ff5500;
